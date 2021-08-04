@@ -12,12 +12,7 @@ const ItemSchema = new Schema({
         type: String,
         required: false
     },
-
-    complete: {
-        type: Boolean,
-        required: true
-    },
-
+ 
     active: {
         type: Boolean,
         required: true

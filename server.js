@@ -24,9 +24,13 @@ app.use(cors())
 
 // Connect DB to mongo
 mongoose.connect(mongoURI ,  { useNewUrlParser: true ,useUnifiedTopology: true})
-.then(()=> console.log("Databse connected"))
+.then(()=> console.log("Database connected"))
 .catch(err=> console.log(err))
  
+ 
+const users  = require('./routes/users')
+ 
+app.use('/users' , users)
 
 
 app.listen(port,()=>{ console.log(`Server started on port ${port}`)})
