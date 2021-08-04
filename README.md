@@ -1,1 +1,2 @@
-"# backend" 
+# backend
+Backend of the todo application
