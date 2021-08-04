@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const ItemSchema = new Schema({
+const TodoSchema = new Schema({
 
     title: {
         type: String,
@@ -18,12 +18,12 @@ const ItemSchema = new Schema({
         required: true
     },
     
-    related_user:{
+    relatedUserId:{
         type : Schema.Types.ObjectId,
-        ref : "User",
+        ref : 'User',
         required: true
     }
 
 })
 
-module.exports = User = mongoose.model('Todo', ItemSchema)
+module.exports = Todo = mongoose.model('Todo', TodoSchema)

@@ -16,8 +16,8 @@ const UserSchema = new Schema({
     },
     todos:[{
         type:Schema.Types.ObjectId,
-        ref: "Todo"
+        ref: 'Todo'
     }]
 })
 
-module.exports = Item = mongoose.model("User" , UserSchema)
+module.exports = User = mongoose.model('User' , UserSchema)
