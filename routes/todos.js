@@ -41,6 +41,25 @@ router.get('/getTodos', auth, (req, res) => {
   
 })
 
+/*
+@route  GET todos/getActiveTodos
+@desc   Get all active todos related to single user
+@access private
+*/
+router.get('/getActiveTodos', auth, (req, res) => {
+    //get user id using jwt token
+    const relatedUserId = req.user.id
+
+    return Todo.find({relatedUserId , 'active' : true })
+        .sort({ date: -1 })
+        .then(Todos => res.json(Todos))
+        .catch((e) => {
+            res.status(404).json({ success: false, error: e })
+        })
+  
+})
+
+
 
 /*
 @route  PUT todos/update/:id
@@ -52,7 +71,44 @@ router.put('/update/:id', auth, (req, res) => {
     const relatedUserId = req.user.id 
     const data = req.body
     return Todo.findOneAndUpdate( relatedUserId ,data) 
-        .then(Todos => res.json(Todos))
+        .then(Todos => res.json({...Todos._doc , ...data}))
+        .catch((e) => {
+            res.status(404).json({ success: false, error: e })
+        })
+ 
+  
+})
+
+
+
+/*
+@route  PUT todos/complete/:id
+@desc   complete a todo
+@access private
+*/
+router.put('/complete/:id', auth, (req, res) => {
+    //get user id using jwt token
+    const relatedUserId = req.user.id 
+    const data = req.body
+    return Todo.findOneAndUpdate( relatedUserId ,{'active':false}) 
+        .then(Todos => res.json({...Todos._doc , ...data}))
+        .catch((e) => {
+            res.status(404).json({ success: false, error: e })
+        })
+ 
+  
+})
+
+
+/*
+@route  DELETE todos/:id
+@desc   delete a todo
+@access private
+*/
+router.delete('/delete/:id', auth, (req, res) => { 
+    const id = req.params.id
+    return Todo.deleteOne({_id:id})
+        .then(Todos => res.json({...Todos._doc , ...data}))
         .catch((e) => {
             res.status(404).json({ success: false, error: e })
         })
