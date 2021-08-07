@@ -2,9 +2,7 @@
 Backend of the todo application
 
 
-## User Guide
-
-#### How to Setup
+## How to Setup
 
 Clone the repository.
 
