@@ -15,10 +15,10 @@ const jwtSecret = process.env.JWT_SECRET
 @access public
 */
 router.post('/signup', (req, res) => {
-    const { name, email, password } = req.body
+    const { email, password } = req.body
 
     //Simple validation
-    if (!name || !email || !password) {
+    if (!email || !password) {
         return res.status(400).json({ 'success': false, 'msg': 'Please enter all feilds' })
     }
 
@@ -34,7 +34,7 @@ router.post('/signup', (req, res) => {
         bcrypt.hash(password, salt, (e, hash) => {
             if (e) return res.status(402).json({ 'success': false, 'msg': e })
             const password = hash
-            const newUser = new User({ name, email, password })
+            const newUser = new User({ email, password })
             newUser.save()
                 .then(user => {
                     jwt.sign(
@@ -48,7 +48,6 @@ router.post('/signup', (req, res) => {
                                 token,
                                 user: {
                                     id: user.id,
-                                    name: user.name,
                                     email: user.email,
                                 }
                             })
@@ -69,7 +68,7 @@ router.post('/signup', (req, res) => {
 */
 router.post('/login', (req, res) => {
     const { email, password } = req.body
- 
+
     //Simple validation
     if (!email || !password) {
         return res.status(400).json({ 'success': false, 'msg': 'Please enter all feilds' })
