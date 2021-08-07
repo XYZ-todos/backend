@@ -8,11 +8,14 @@ Backend of the todo application
 
 Clone the repository.
 
+### Add environment variables
+ Rename the 'sample.env' to '.env' and provide values for PORT , MONGO_URI and JWT_SECRET
+
 #### How to Use
 
-Run `npm install` in `CodeLabz` folder.
+Run `yarn` in `backend` folder.
 
 ```
- cd CodeLabz/
- npm install
+ cd backend/
+ yarn
 ```
