@@ -40,7 +40,7 @@ router.post('/signup', (req, res) => {
                     jwt.sign(
                         { id: user._id },
                         jwtSecret,
-                        { expiresIn: 36000 },
+                        // { expiresIn: 36000 },
                         (err, token) => {
                             if (err) throw err;
                             res.json({
@@ -69,8 +69,7 @@ router.post('/signup', (req, res) => {
 */
 router.post('/login', (req, res) => {
     const { email, password } = req.body
-
-    console.log(JSON.stringify(req.body))
+ 
     //Simple validation
     if (!email || !password) {
         return res.status(400).json({ 'success': false, 'msg': 'Please enter all feilds' })
@@ -91,7 +90,7 @@ router.post('/login', (req, res) => {
                         jwt.sign(
                             { id: user._id },
                             jwtSecret,
-                            { expiresIn: 36000 },
+                            // { expiresIn: 36000 },
                             (err, token) => {
                                 if (err) throw err;
                                 res.json({
