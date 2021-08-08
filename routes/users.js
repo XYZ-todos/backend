@@ -39,8 +39,7 @@ router.post('/signup', (req, res) => {
                 .then(user => {
                     jwt.sign(
                         { id: user._id },
-                        jwtSecret,
-                        // { expiresIn: 36000 },
+                        jwtSecret, 
                         (err, token) => {
                             if (err) throw err;
                             res.json({
@@ -88,8 +87,7 @@ router.post('/login', (req, res) => {
 
                         jwt.sign(
                             { id: user._id },
-                            jwtSecret,
-                            // { expiresIn: 36000 },
+                            jwtSecret, 
                             (err, token) => {
                                 if (err) throw err;
                                 res.json({
